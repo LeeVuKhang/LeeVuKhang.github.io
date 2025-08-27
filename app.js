@@ -4,7 +4,7 @@ import express from 'express';
 const __dirname = import.meta.dirname;
 const app = express();
 
-app.use("/static", express.static(__dirname + '/static'));
+app.use("/static", express.static('static'));
 //note / tunng tab
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
