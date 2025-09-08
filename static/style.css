@@ -78,6 +78,7 @@ h1 {
   box-shadow: none;
   border-radius: 0;
   transition: color 0.2s;
+  text-align: center ;
 }
 .switch-btn:hover {
   color: #fff;

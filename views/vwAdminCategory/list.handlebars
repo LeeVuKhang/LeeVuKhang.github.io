@@ -1,0 +1,28 @@
+<div class="card">
+    <h5 class="card-header">Account registration</h5>
+    <div class="card-body">
+        <form method = "post" action = "/account/signup" id="frmRegister">
+        <div class="mb-3">
+            <label for="txtUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="txtUsername" name = "username" required>
+        </div>
+        <div class="mb-3">
+            <label for="TxtEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" name = "email" required>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.(nah we will)</div>
+        </div>
+        <div class="mb-3">
+            <label for="txtPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="txtPassword"  name = "password" required>
+        </div>
+        <div class="mb-3">
+            <label for="txtConfirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="txtConfirmPassword" name = "cpassword"required>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-patch-check"></i> Register
+        </button>
+        </form>
+    </div>
+</div>
+
