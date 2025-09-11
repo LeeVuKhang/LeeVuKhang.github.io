@@ -60,9 +60,15 @@ app.get('/account/login', (req, res) => {
 app.get('/admin/categories', (req, res) => {
     res.render('vwAdminCategory/list');
 });
-app.get('/account/login', (req, res) => {
-    res.sendFile(__dirname + '/login.html');
+
+app.get('/admin/categories/add', (req, res) => {
+    res.render('vwAdminCategory/add');
 });
+
+app.get('/admin/categories/edit', (req, res) => {
+    res.render('vwAdminCategory/edit');
+});
+
 //lenh cuoi cung
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000');
