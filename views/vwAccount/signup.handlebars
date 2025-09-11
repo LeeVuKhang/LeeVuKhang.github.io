@@ -1,3 +1,25 @@
+{{#fill_section 'js'}}
+<script>
+      alert('Hello from main layout');
+      function handleSubmit(event) {
+      event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+      
+      const username = document.querySelector('#txtUsername').value;
+      if (username.length === 0) {
+        alert('Please enter a username');
+        return;
+      }
+      if (username.length < 3) {
+        alert('Username must be at least 3 characters long');
+        return;
+      }
+
+      e.target.submit(); 
+    }
+    document.querySelector('#frmRegister').addEventListener('submit', handleSubmit);
+  </script>
+{{/fill_section}}
+
 <div class="card">
         <h5 class="card-header">Account registration</h5>
         <div class="card-body">
@@ -26,22 +48,3 @@
         </div>
         </div>
 
-<script>
-      alert('Hello from main layout');
-      function handleSubmit(event) {
-      event.preventDefault(); // Ngăn chặn hành vi mặc định của form
-      
-      const username = document.querySelector('#txtUsername').value;
-      if (username.length === 0) {
-        alert('Please enter a username');
-        return;
-      }
-      if (username.length < 3) {
-        alert('Username must be at least 3 characters long');
-        return;
-      }
-
-      e.target.submit(); 
-    }
-    document.querySelector('#frmRegister').addEventListener('submit', handleSubmit);
-  </script>

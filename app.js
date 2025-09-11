@@ -1,12 +1,17 @@
 //console.log("Hello, World! This is my first Node.js app.");
 import express from 'express';
 import { engine } from 'express-handlebars';
-
+import hbs_sections from 'express-handlebars-sections';
 const __dirname = import.meta.dirname;
 const app = express();
 
+app.engine('handlebars', engine({
+    helpers: {
+        fill_section: hbs_sections()
+    }
+}));
+
 app.use(express.urlencoded({ extended: true }));
-app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
