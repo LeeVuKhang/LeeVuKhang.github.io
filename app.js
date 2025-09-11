@@ -45,30 +45,16 @@ app.get('/about-nhhl', (req, res) => {
 });
 
 //signup
-app.get('/account/signup', (req, res) => {
-    res.sendFile(__dirname + '/signup.html');
-});
-app.post('/account/signup', (req, res) => {
-    console.log(req.body);
-    res.send(JSON.stringify(req.body));
-    res.sendFile('Thank you for registering!');
-});
-app.get('/account/login', (req, res) => {
-    res.sendFile(__dirname + '/login.html');
-});
 
-app.get('/admin/categories', (req, res) => {
-    res.render('vwAdminCategory/list');
-});
+import accountRouter from './routes/account.routes.js';
+app.use('/account', accountRouter);
 
-app.get('/admin/categories/add', (req, res) => {
-    res.render('vwAdminCategory/add');
-});
 
-app.get('/admin/categories/edit', (req, res) => {
-    res.render('vwAdminCategory/edit');
-});
+import categoryRouter from './routes/category.routes.js';
+app.use('/admin/categories', categoryRouter);
 
+import productRouter from './routes/product.routes.js';
+app.use('/products', productRouter);
 //lenh cuoi cung
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000');
