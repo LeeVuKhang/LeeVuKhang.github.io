@@ -5,7 +5,7 @@ const db = knex({
             host: 'aws-1-ap-southeast-1.pooler.supabase.com',
             port: 5432,
             user: 'postgres.gpwrecummsejzeplxcve',
-            password: 'ljLMP64rMD0XI9A0',
+            password: '4GzVxWdy83z4IHoS',
             database: 'postgres'
         },
         pool: { min: 0, max: 15 }

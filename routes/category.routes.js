@@ -28,3 +28,19 @@ router.post('/add', async (req, res) => {
     await categoryModel.add(category);
     res.render('vwAdminCategory/add');
 });
+
+router.post('/patch', async (req, res) => { 
+    const id = req.body.catid;
+    const category = {
+        catname: req.body.catname
+    };
+
+    await categoryModel.patch(id, category);
+    res.redirect('/admin/categories');
+});
+
+router.post('/delete', async (req, res) => {
+    const id = req.body.catid;
+    await categoryModel.del(id);
+    res.redirect('/admin/categories');
+});

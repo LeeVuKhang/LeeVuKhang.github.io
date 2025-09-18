@@ -2,14 +2,28 @@
 import express from 'express';
 import { engine } from 'express-handlebars';
 import hbs_sections from 'express-handlebars-sections';
+import categoryModel from './models/category.model.js';
+
 const __dirname = import.meta.dirname;
 const app = express();
 
 app.engine('handlebars', engine({
     helpers: {
-        fill_section: hbs_sections()
+        fill_section: hbs_sections(),
+        formatNumber(num) {
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
+        },
+        eq(a, b) {return a === b;}
     }
+
 }));
+
+//lấy danh mục bỏ vào chỗ dùng chung để mọi file đều dùng được
+
+app.use(async function(req, res, next) {
+    res.locals.global_categories = await categoryModel.findAll();
+    next();
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'handlebars');
@@ -64,3 +78,4 @@ app.use('/products', productRouter);
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000');
 });
+
