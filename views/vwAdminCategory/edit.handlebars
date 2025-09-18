@@ -4,13 +4,14 @@
         <div class="card-body">
             <div class="mb-3">
                 <label for="txtCatID" class="form-label mx">ID</label>
-                <input type="text" class="form-control" id="txtCatID" name="ID">
+                <input type="text" class="form-control" id="txtCatID" value = "{{category.catid}}" name="catid" >
             </div>
         </div>
+
          <div class="card-body">
             <div class="">
-                <label for="CatName" class="form-label mx">Caterogy</label>
-                <input type="text" class="form-control" id="CatName" name="Name">
+                <label for="CatName" class="form-label mx" >Caterogy</label>
+                <input type="text" class="form-control" id="CatName" value = "{{category.catname}}" name="catname" >
             </div>
         </div>
     </div>
