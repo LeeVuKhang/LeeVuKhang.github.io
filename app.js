@@ -3,9 +3,19 @@ import express from 'express';
 import { engine } from 'express-handlebars';
 import hbs_sections from 'express-handlebars-sections';
 import categoryModel from './models/category.model.js';
+import session from 'express-session';
 
 const __dirname = import.meta.dirname;
 const app = express();
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'skibidiahjdwadlwadluiasigma',
+  resave: false,
+  saveUninitialized: true,  
+  cookie: { secure: false }
+}))
+
 
 app.engine('handlebars', engine({
     helpers: {
@@ -20,8 +30,11 @@ app.engine('handlebars', engine({
 
 //lấy danh mục bỏ vào chỗ dùng chung để mọi file đều dùng được
 
-app.use(async function(req, res, next) {
-    res.locals.global_categories = await categoryModel.findAll();
+app.use(function(req, res, next) {
+    if (req.session.isAuthenticated){
+        res.locals.isAuthenticated = true;
+        res.locals.authUser = req.session.authUser;
+    }
     next();
 });
 
@@ -36,7 +49,11 @@ app.get('/home', (req, res) => {
 app.use("/static", express.static('static'));
 //note / tunng tab
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    if (req.session.isAuthenticated){
+        console.log('User is authenticated');
+        console.log(req.session.authUser)
+    }
+    res.render('home');
 });
 
 app.get('/about-my-team', (req, res) => {
