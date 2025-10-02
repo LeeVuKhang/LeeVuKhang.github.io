@@ -1,6 +1,8 @@
 import express from 'express';
 import productModel from '../models/product.model.js';
 import categoryModel from '../models/category.model.js';
+
+
 const router = express.Router();
 
 router.get('/byCat', async (req, res) => {

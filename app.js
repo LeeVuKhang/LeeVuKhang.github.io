@@ -4,6 +4,7 @@ import { engine } from 'express-handlebars';
 import hbs_sections from 'express-handlebars-sections';
 import categoryModel from './models/category.model.js';
 import session from 'express-session';
+import { checkAdmin, checkAuthenticated } from './models/auth.model.js';
 
 const __dirname = import.meta.dirname;
 const app = express();
@@ -93,7 +94,7 @@ app.use('/account', accountRouter);
 
 
 import categoryRouter from './routes/category.routes.js';
-app.use('/admin/categories', categoryRouter);
+app.use('/admin/categories', checkAuthenticated, checkAdmin, categoryRouter);
 
 import productRouter from './routes/product.routes.js';
 app.use('/products', productRouter);

@@ -1,8 +1,9 @@
 import express from 'express';
 import userModel from '../models/user.model.js';
+import { checkAuthenticated  } from '../models/auth.model.js';
 const router = express.Router();
 
-    
+
 router.get('/signup', (req, res) => {
     res.render('vwAccount/signup');
 }); 
@@ -38,7 +39,10 @@ router.post('/signin', async (req, res) => {
 
     req.session.isAuthenticated = true;
     req.session.authUser = user;
-    return res.redirect('/');
+
+    const reUrl = req.session.reUrl || '/';
+    delete req.session.reUrl;
+    return res.redirect(reUrl);
 });
 
 router.post('/signout', async (req, res) => {
@@ -60,13 +64,7 @@ router.get('/profile', checkAuthenticated, async (req, res) => {
     res.render('vwAccount/profile', {user: req.session.authUser})
 });
 
-function checkAuthenticated(req, res, next){
-    if (req.session.isAuthenticated){
-        next();
-    } else {
-        res.redirect('signin')
-    }
-}
+
 
 router.post('/profile', checkAuthenticated, async (req, res) => {
     const id = req.body.id;
