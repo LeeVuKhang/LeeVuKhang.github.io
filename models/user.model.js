@@ -5,5 +5,8 @@ export default{
     },
     findByUsername(username){
         return db('users').where('username', username).first();
+    },
+    patch(id, user){
+        return db('users').where('id', id).update(user);
     }
 }

@@ -23,7 +23,13 @@ app.engine('handlebars', engine({
         formatNumber(num) {
             return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
         },
-        eq(a, b) {return a === b;}
+        eq(a, b) {return a === b;},
+        formatDate(date) {
+            if (!date) return '';
+            const d = new Date(date);
+            d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); 
+            return d.toISOString().split('T')[0];
+        }
     }
 
 }));
